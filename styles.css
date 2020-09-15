@@ -1,0 +1,147 @@
+:root {
+	font-family: 'Rubik', sans-serif;
+  font-size: 18px;
+}
+
+body {
+  margin: 0;
+
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+
+  --Grayish-Black: hsl(0, 0%, 17%);
+	--Dark-Gray: hsl(0, 0%, 59%);
+	--brd-radius: 10px;
+}
+
+.top-container,
+.attribution {
+  flex: 0 0 auto;
+}
+
+#map {
+  flex: 1 1 70vh;
+}
+
+
+.top-container {
+  background: url('./images/pattern-bg.png');
+	padding: 0 5% 150px;
+	position: relative;
+}
+
+.main-heading {
+  color: white;
+  text-align: center;
+}
+
+.form {
+  width: min-content;
+  margin: auto;
+  border-radius: var(--brd-radius);
+  overflow: hidden;
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+}
+
+.input {
+  box-sizing: border-box;
+  padding: 1rem;
+  width: min(500px, 80vw);
+	border: none;
+	font-size: .9rem;
+}
+.input:focus {
+	box-shadow: 0 0 5px inset black;
+}
+
+.submit-btn {
+  flex: 0 0 15%;
+  background: var(--Grayish-Black) url('images/icon-arrow.svg') no-repeat center;
+  cursor: pointer;
+  border: none;
+}
+
+.user-data-list {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+	margin: auto;
+	
+	width: max-content;	
+	max-width: 90vw;
+  display: flex;
+  flex-flow: row nowrap;
+	justify-content: flex-start;
+	
+	transform: translateY(50%);
+	background: white;
+	z-index: 500;
+	border-radius: var(--brd-radius);
+}
+
+.user-data-item {
+	flex: 0 1 25%;
+  padding: 2% 2vw;
+  position: relative;
+}
+
+.user-data-item:not(:last-child)::after {
+  content: '';
+  width: 1px;
+  height: 60%;
+  background: black;
+  position: absolute;
+  right: 0;
+  top: 0; bottom: 0;
+	margin: auto;
+}
+
+.user-data-item .data-term {
+	font-size: .8rem;
+	font-weight: 500;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+.user-data-item .data-term, .input::placeholder {
+	color: var(--Dark-Gray);
+}
+
+.user-data-item .data-value {
+	margin-left: 0;
+	font-size: 1.2rem;
+	font-weight: 700;
+	color: var(--Grayish-Black);
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+  text-decoration: none;
+}
+
+
+
+
+@media screen and (max-width: 900px) {
+	.user-data-list {
+		flex-direction: column;
+		text-align: center;
+	}
+	.user-data-list .user-data-item::after {
+		width: 0; height: 0;
+	}
+}
+@media screen and (max-width: 450px) {
+	:root {
+		font-size: 16px;
+	}
+}
