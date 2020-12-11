@@ -24,21 +24,21 @@ body {
   flex: 1 1 70vh;
 }
 
-
 .top-container {
   background: url('./images/pattern-bg.png');
-	padding: 0 5% 150px;
+	padding: 5vh 5% 100px;
 	position: relative;
 }
 
 .main-heading {
   color: white;
-  text-align: center;
+	text-align: center;
+	margin: 0;
 }
 
 .form {
   width: min-content;
-  margin: auto;
+  margin: 5vh auto;
   border-radius: var(--brd-radius);
   overflow: hidden;
 
@@ -133,6 +133,8 @@ body {
 
 @media screen and (max-width: 900px) {
 	.user-data-list {
+		position: unset;
+		transform: unset;
 		flex-direction: column;
 		text-align: center;
 	}
