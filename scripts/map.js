@@ -1,16 +1,16 @@
 let map, marker;
 
-function setMap({lat, lng}) {
+function setMap({ lat, lng }) {
 	/* reset map when it's to be refreshed for the queried ipAddress/domain */
-	if(map) {
+	if (map) {
 		map.remove();
 		map = undefined;
 		document.getElementById('map').innerHTML = '';
 	}
 
-	map = L.map('map').setView([lat, lng], 7);
+	map = L.map('map').setView([ lat, lng ], 7);
 
-	const tileAttribution = 
+	const tileAttribution =
 		`<a href="https://www.maptiler.com/copyright/" target="_blank">
 			&copy; MapTiler
 		 </a>
@@ -18,7 +18,7 @@ function setMap({lat, lng}) {
 			&copy; OpenStreetMap contributors
 		 </a>`;
 
-	L.tileLayer	('https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=PBw3UFPJIOtPuMHgmMfn', {
+	L.tileLayer('https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=PBw3UFPJIOtPuMHgmMfn', {
 		attribution: tileAttribution
 	}).addTo(map);
 
@@ -27,7 +27,7 @@ function setMap({lat, lng}) {
 		iconUrl: './images/icon-location.svg',
 	})
 
-	marker = L.marker([lat, lng], {icon: markerIcon}).addTo(map);
+	marker = L.marker([ lat, lng ], { icon: markerIcon }).addTo(map);
 }
 
 export default setMap;

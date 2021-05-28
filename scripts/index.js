@@ -1,30 +1,29 @@
-import fetchData from './fetch.js';
-import handleSubmit from './submit.js';
-import setMap from './map.js';
+import setUpPage from './set_up_page.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-	setUpEverything();
-
+	setUpPage();
 	document.querySelector('form').onsubmit = handleSubmit;
 });
 
-/* Fetch query can be made with either an ipAddress or a domain */
-async function setUpEverything(queryType, queryValue) {
-	
-	const data = await fetchData(queryType, queryValue);
+function handleSubmit(e) {
+	e.preventDefault();
 
-	displayUserInfo(data);
-	setMap(data.location);
+	const mapContainer = document.getElementById('map');
+	mapContainer.innerHTML = '<h1 class="loading-text">Loading...</h1>';
+
+	const input = document.querySelector('.input');
+
+	const ipRegExp = RegExp(`(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}`);
+	const domainRegExp = RegExp(`^((?!-)[A-Za-z0-9-]{1,63}(?<!-)\\.)+[A-Za-z]{2,6}$`);
+
+	/* check whether input is an ip-address or a domain-name or an invalid input */
+	if (ipRegExp.test(input.value)) {
+		setUpPage('ipAddress', input.value);
+	}
+	else if (domainRegExp.test(input.value)) {
+		setUpPage('domain', input.value);
+	}
+	else {
+		alert('Please enter a domain name or an ip address.');
+	}
 }
-
-
-function displayUserInfo({ip, location, isp}) {
-	const [IP, Location, TimeZone, ISP] = document.getElementsByClassName('data-value');
-
-	IP.innerText = ip;
-	Location.innerText = `${location.region}, ${location.country} ${location.postalCode}`;
-	TimeZone.innerText = 'UTC ' + location.timezone;
-	ISP.innerText = isp;
-}
-
-export {setUpEverything};
